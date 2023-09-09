@@ -33,7 +33,7 @@ function FileSwitcher() {
               "content": fileText
             }
             console.log("trying to make request now")
-            const response = await axios.post(`${process.env.REACT_APP_URL}/`, postData)
+            const response = await axios.post(`${process.env.REACT_APP_URL}/add_source_document`, postData)
             console.log(response.data)
           } catch (error) {
             console.error('There was an error!', error)
