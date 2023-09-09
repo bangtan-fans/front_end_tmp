@@ -34,7 +34,6 @@ function App() {
           {/*<button onClick={handleClickUpload}>Upload Text File</button>
           {showUploader && <FileUploader onUpload={handleUpload} />}*/}
           <FileUploader onUpload={(text, name) => handleUpload(text, name)} />
-          <button>Submit</button>
           <div style={{ marginLeft: '10px', display: 'flex', gap: '10px' }}>
             {docNames.map((name, index) => <span key={index}>{name}</span>)}
           </div>
