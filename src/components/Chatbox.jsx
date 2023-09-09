@@ -48,6 +48,9 @@ function Chatbox() {
 
   function handleSubmit(e) {
     e.preventDefault()
+    if (currMessage === "") {
+      return;
+    }
 
     // NEED SOME VARIABLE HERE TO BLOCK FURTHER REQUESTS UNTIL READY
 
@@ -64,7 +67,7 @@ function Chatbox() {
     console.log(currMessage)
 
     setMessages(prevMessages => [...prevMessages, newMessage])
-    setCurrMessage("") // clear the input field
+    setCurrMessage("")  // Clear the input field
 
     if (inputRef.current && inputRef.current.value) {  // Hardcode, component is weird
       inputRef.current.value = ""
