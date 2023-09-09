@@ -3,6 +3,7 @@ import "../document.css"
 import Document from "./CentralDocument.jsx"
 import SourceDocument from "./SourceDocument.jsx"
 import FileUploader from "./FileUploader.jsx"
+import axios from 'axios';
 
 function FileSwitcher() {
     //const [docTexts, setDocTexts] = useState([])  // Saves all of the document text which has been uploaded so far

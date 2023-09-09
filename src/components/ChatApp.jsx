@@ -11,7 +11,7 @@ function ChatApp({ state }) {
   async function getAllIDs() {
     try {
         const response = await axios.get(`${process.env.REACT_APP_URL}/get_all_ids`)
-        console.log(response)
+        // console.log(response)
         return response.data
     } catch (error) {
         console.error('Error fetching messages:', error)
@@ -83,10 +83,48 @@ function ChatApp({ state }) {
     }
   }
 
+  async function createChat() {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_URL}/new_chat`)
+      console.log("res", response)
+      setChats(prevChats => [...prevChats, {"name": "Untitled", "id": response.data.new_chat_id}])
+    } catch (error) {
+      console.error('Error creating new chat:', error)
+      throw error
+    }
+  }
+
+  async function handleNewChat() {
+    try {
+      await createChat()
+    } catch (err) {
+      console.error("Error creating new chat:", err)
+    }
+  }
+
+  async function deleteChat(chatID) {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_URL}/delete_chat/${chatID}`)
+      console.log("res", response)
+    } catch (error) {
+      console.error('Error creating new chat:', error)
+      throw error
+    }
+  }
+
+  async function handleDeleteChat(chatID) {
+    try {
+      console.log("gets here")
+      await deleteChat()
+    } catch (err) {
+      console.error("Error deleting chat:", err)
+    }
+  }
+
   return (
     <div className="chat-app">
       {selectedChatID && <Chatbox messageState={selectedMessages} handleSendMessage={handleSendMessage} className="chatbox-history" />}
-      <ChatboxHistory chats={chats} onSelectChat={handleChatClick} className="chatbox" />
+      <ChatboxHistory chats={chats} onSelectChat={handleChatClick} handleNewChat={handleNewChat} handleDeleteChat={handleDeleteChat} className="chatbox" />
     </div>
   )
 }
