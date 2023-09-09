@@ -3,35 +3,19 @@ import { useState, useEffect, useRef } from "react"
 import { MessageList, Input, Button } from 'react-chat-elements'
 import "react-chat-elements/dist/main.css"
 
-function Chatbox() {
+function Chatbox({ state }) {
 
-  const [messages, setMessages] = useState(
-    [
-      {
-        position:"right",
-        type:"text",
-        title:"mai",
-        text:"UWU",
-      },
-      {
-        position:"left",
-        type:"text",
-        title:"allister",
-        text:"OWO",
-      },
-      {
-        position:"left",
-        type:"text",
-        title:"taylor",
-        text:"OMO",
-      },
-      {
-        position:"left",
-        type:"text",
-        title:"nyan",
-        text:"cat",
-      },
-    ])
+  const [messages, setMessages] = useState([])
+
+  useEffect(() => {
+      const newMessages = state.map(item => ({
+          position: "left",
+          type: "text",
+          title: item.name,
+          text: item.message
+      }));
+      setMessages(newMessages);
+  }, [state]);
 
   const [currMessage, setCurrMessage] = useState("")
 
