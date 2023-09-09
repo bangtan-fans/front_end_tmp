@@ -69,3 +69,20 @@
   overflow-y: auto;
   border-left: 1px solid #ddd; /* Visual separator */
 }
+
+.doclist-section {
+  flex-basis: 15%; /* This makes the section take up 15% of the parent width */
+  display: flex;
+  flex-direction: column;
+}
+
+.document-box {
+  width: 100%;  /* Takes up all available space */
+  height: 100%;
+  overflow-y: auto;
+}
+
+.file-app {
+  display: flex;
+  height: 100vh;
+}

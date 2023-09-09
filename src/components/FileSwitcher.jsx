@@ -3,6 +3,7 @@ import "../document.css"
 import Document from "./CentralDocument.jsx"
 import SourceDocument from "./SourceDocument.jsx"
 import FileUploader from "./FileUploader.jsx"
+import axios from 'axios';
 
 function FileSwitcher() {
     //const [docTexts, setDocTexts] = useState([])  // Saves all of the document text which has been uploaded so far
@@ -24,14 +25,25 @@ function FileSwitcher() {
         setToggleState(index)
     }
 
-    // async function handleUploadFile(fileName, fileText) {
-    //     // API CALL FUNCTION AXIOS CALL HERE
-    // }
+    async function handleUploadFile(fileName, fileText) {
+        console.log("trying to send", fileName, fileText)
+        try {
+            const postData = {
+              "filename": fileName,
+              "content": fileText
+            }
+            console.log("trying to make request now")
+            const response = await axios.post(`${process.env.REACT_APP_URL}/`, postData)
+            console.log(response.data)
+          } catch (error) {
+            console.error('There was an error!', error)
+          }
+    }
 
     return(
         <div className="file_switcher">
             <div className="file_buttons">
-                <FileUploader onUpload={(text, name) => handleUpload(text, name)} />
+                <FileUploader onUpload={(text, name) => handleUpload(text, name)} handleFileUpload={handleUploadFile} />
                 <div style={{ marginLeft: '10px', display: 'flex', gap: '10px' }}>
                     {docNames.map((name, index) => <span key={index}>{name}</span>)}
                 </div>
