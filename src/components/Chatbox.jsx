@@ -3,19 +3,19 @@ import { useState, useEffect, useRef } from "react"
 import { MessageList, Input, Button } from 'react-chat-elements'
 import "react-chat-elements/dist/main.css"
 
-function Chatbox({ state }) {
+function Chatbox({ messageState, handleSendMessage }) {
 
   const [messages, setMessages] = useState([])
 
   useEffect(() => {
-      const newMessages = state.map(item => ({
-          position: "left",
+      const newMessages = messageState.map(item => ({
+          position: item.role === "system" ? "left" : "right",
           type: "text",
-          title: item.name,
-          text: item.message
+          title: item.role,
+          text: item.content
       }));
       setMessages(newMessages);
-  }, [state]);
+  }, [messageState]);
 
   const [currMessage, setCurrMessage] = useState("")
 
@@ -44,11 +44,13 @@ function Chatbox({ state }) {
     const newMessage = {
       position: "right", // assuming new messages are always on the right
       type: "text",
-      title: "Your Name", // Replace with the actual name if needed
+      title: "user", // Replace with the actual name if needed
       text: currMessage
     };
 
     console.log(currMessage)
+
+    handleSendMessage(currMessage)
 
     setMessages(prevMessages => [...prevMessages, newMessage])
     setCurrMessage("")  // Clear the input field
