@@ -61,7 +61,8 @@ function ChatApp({ state }) {
     try {
       const postData = {
         "chat_id": chatID,
-        "prompt": message
+        "prompt": message,
+        "source_docs": []
       }
       console.log("trying to make request now")
       const response = await axios.post(`${process.env.REACT_APP_URL}/submit_prompt`, postData)
