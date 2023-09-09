@@ -1,16 +1,21 @@
 import { useState, useEffect, useRef , useCallback} from "react"
 import React from "react"
 
-// function SourceDocument(data) {
-//     return(
-//         <h3>data.data</h3>
-//     )
-// }
+var hardcoded = "yolo"
 
-const SourceDocument = (props) => {
+function SourceDocument({selectedDoc, retrieveSourceFile, fileName}) {
+    const content = retrieveSourceFile(hardcoded)
+    //document.getElementById("content").innerHTML = content.data;
+    //console.log(content)
     return(
-        <h4>{props.data}</h4>
+        <div>{selectedDoc}</div>
     )
 }
+
+// const SourceDocument = (props) => {
+//     return(
+//         <h4>{props.data}</h4>
+//     )
+// }
 
 export default SourceDocument

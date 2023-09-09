@@ -5,10 +5,11 @@ import SourceDocument from "./SourceDocument.jsx"
 import FileUploader from "./FileUploader.jsx"
 import axios from 'axios';
 
-function FileSwitcher() {
+function FileSwitcher({selectedDocs}) {
     //const [docTexts, setDocTexts] = useState([])  // Saves all of the document text which has been uploaded so far
     const [docNames, setDocNames] = useState([])
     const [showUploader, setShowUploader] = useState(false)  // Toggle open source document upload area  
+    const [selectedDoc, setSelectedDoc] = useState([])
 
     function handleUpload(text, docName) {
         //setDocTexts(prevDocTexts => [...prevDocTexts, text])
@@ -16,7 +17,7 @@ function FileSwitcher() {
       }
     
     function handleClickUpload() {
-    setShowUploader(!showUploader)
+        setShowUploader(!showUploader)
     }
 
     const [toggleState, setToggleState] = useState(1)
@@ -40,6 +41,27 @@ function FileSwitcher() {
           }
     }
 
+    async function retrieveSourceFile(fileName) {
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_URL}/get_source_document/${fileName}`)
+            return response.data
+        } catch (error) {
+            console.error('Error fetching messages:', error)
+            throw error
+        }
+    }
+
+    async function handleRetrieve(fileName) {
+        try {
+            const response = await retrieveSourceFile(fileName)  // API CALL
+            // const msgs = [{name: "taylor", message: "swift"}]  // TEMP DATA
+            setSelectedDoc(response)
+            // setSelectedChatID(chatID)
+        } catch (err) {
+            console.error('Error fetching messages:', err)
+        }
+    }
+
     return(
         <div className="file_switcher">
             <div className="file_buttons">
@@ -56,7 +78,7 @@ function FileSwitcher() {
                     <Document />
                 </div>
                 <div className={toggleState === 2 ? "active-content" : "content"}>
-                    <SourceDocument />
+                    <SourceDocument selectedDoc={selectedDoc} retrieveSourceFile={handleRetrieve} fileName={selectedDocs}/>
                 </div>
             </div>
         </div>
