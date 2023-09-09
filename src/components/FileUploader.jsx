@@ -11,7 +11,7 @@ function FileUploader({ onUpload, handleFileUpload }) {
         const text = event.target.result
         onUpload(text, file.name)
         //console.log(text)
-        handleFileUpload(file.name.slide(0,-4), text)
+        handleFileUpload(file.name.slice(0,-4), text)
       })
       reader.readAsText(file)
       //console.log(file.name.slice(0,-4))
