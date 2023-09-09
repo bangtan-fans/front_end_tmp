@@ -47,3 +47,25 @@
   box-sizing: border-box;
   width: 50%;
 }
+
+.chat-app {
+  position: relative;  /* Establishes a positioning context */
+  height: 100vh;
+  padding-right: 15%; /* Reserve space for chat history */
+}
+
+.chatbox {
+  width: 100%;  /* Takes up all available space */
+  height: 100%;
+  overflow-y: auto;
+}
+
+.chatbox-history {
+  position: absolute;  /* Position this absolutely to its parent (chat-app) */
+  right: 0;  /* Attach to the right side */
+  top: 0;  /* Attach to the top */
+  bottom: 0;  /* Ensure it spans the entire height */
+  width: 15%;
+  overflow-y: auto;
+  border-left: 1px solid #ddd; /* Visual separator */
+}
