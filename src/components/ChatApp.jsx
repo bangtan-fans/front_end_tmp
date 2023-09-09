@@ -24,6 +24,7 @@ function ChatApp({ state }) {
       try {
         const chatList = await getAllIDs()  // API CALL
         // const chatList = [{chatID: "12345", chatName: "somechat"}]  // TEMP DATA
+        console.log(chatList)
         setChats(chatList)
       } catch (err) {
         console.error('Error fetching chats:', err)
@@ -103,20 +104,39 @@ function ChatApp({ state }) {
     }
   }
 
+  // async function deleteChat(chatID) {
+  //   try {
+  //     const response = await axios.get(`${process.env.REACT_APP_URL}/delete_chat_id/${chatID}`)
+  //     console.log("res", response)
+  //   } catch (error) {
+  //     console.error('Error creating new chat:', error)
+  //     throw error
+  //   }
+  // }
+
   async function deleteChat(chatID) {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_URL}/delete_chat/${chatID}`)
-      console.log("res", response)
+      console.log("tries to delete")
+      const response = await axios.delete(`${process.env.REACT_APP_URL}/delete_chat_id/${chatID}`);
+
+      if (response.status === 200) {
+        console.log('Successfully deleted item:', chatID);
+
+        // Optionally, you can also update your local state after successful deletion:
+        setChats(prevChats => prevChats.filter(item => item.id !== chatID));
+      } else {
+        console.error('Failed to delete item. Response:', response);
+      }
+
     } catch (error) {
-      console.error('Error creating new chat:', error)
-      throw error
+      console.error('Error deleting item:', error);
     }
   }
 
   async function handleDeleteChat(chatID) {
     try {
       console.log("gets here")
-      await deleteChat()
+      await deleteChat(chatID)
     } catch (err) {
       console.error("Error deleting chat:", err)
     }
