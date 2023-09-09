@@ -36,19 +36,12 @@ function Chatbox({ messageState, handleSendMessage }) {
       return;
     }
 
-    // NEED SOME VARIABLE HERE TO BLOCK FURTHER REQUESTS UNTIL READY
-
-    // API CALL TO BACKEND HERE
-    // USE THE RESPONSE FROM API CALL TO WRITE THE NEW MESSAGE
-
     const newMessage = {
       position: "right", // assuming new messages are always on the right
       type: "text",
       title: "user", // Replace with the actual name if needed
       text: currMessage
-    };
-
-    console.log(currMessage)
+    }
 
     handleSendMessage(currMessage)
 
