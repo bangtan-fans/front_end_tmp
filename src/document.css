@@ -1,0 +1,26 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f3f3f3;
+}
+
+.container .ql-editor {
+    min-height: 8.5in; /* figure out how to fill this to fit screen */
+    padding: 1in;
+    margin: 1rem;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+    background-color: white;
+}
+
+.container .ql-toolbar.ql-snow {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #f3f3f3;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+}
+
