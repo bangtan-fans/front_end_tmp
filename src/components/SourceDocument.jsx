@@ -4,7 +4,7 @@ import React from "react"
 var hardcoded = "yolo"
 
 function SourceDocument({selectedDoc, retrieveSourceFile, fileName}) {
-    const content = retrieveSourceFile(hardcoded)
+    const content = retrieveSourceFile(fileName)
     //document.getElementById("content").innerHTML = content.data;
     //console.log(content)
     return(

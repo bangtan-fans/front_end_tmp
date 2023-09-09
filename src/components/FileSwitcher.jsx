@@ -1,11 +1,11 @@
-import {useState} from "react"
+import { useState, useEffect } from "react"
 import "../document.css"
 import Document from "./CentralDocument.jsx"
 import SourceDocument from "./SourceDocument.jsx"
 import FileUploader from "./FileUploader.jsx"
 import axios from 'axios';
 
-function FileSwitcher({selectedDocs}) {
+function FileSwitcher({ selectedDocs }) {
     //const [docTexts, setDocTexts] = useState([])  // Saves all of the document text which has been uploaded so far
     const [docNames, setDocNames] = useState([])
     const [showUploader, setShowUploader] = useState(false)  // Toggle open source document upload area  
@@ -17,6 +17,7 @@ function FileSwitcher({selectedDocs}) {
       }
     
     function handleClickUpload() {
+        setShowUploader(!showUploader)
         setShowUploader(!showUploader)
     }
 

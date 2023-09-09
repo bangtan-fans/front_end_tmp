@@ -1,6 +1,6 @@
 import './App.css'
 import Chatbox from "./components/Chatbox.jsx"
-//import Document from "./components/Document.jsx"
+// import Document from "./components/Document.jsx"
 // import FileUploader from "./components/FileUploader.jsx"
 import FileApp from "./components/FileApp.jsx"
 import ChatApp from "./components/ChatApp.jsx"
