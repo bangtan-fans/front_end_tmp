@@ -1,6 +1,6 @@
 import {useState} from "react"
 import "../document.css"
-import Document from "./Document.jsx"
+import Document from "./CentralDocument.jsx"
 
 function FileSwitcher() {
 
