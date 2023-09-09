@@ -24,14 +24,14 @@ function FileSwitcher() {
         setToggleState(index)
     }
 
-    async function handleUploadFile(fileName, fileText) {
-        // API CALL FUNCTION AXIOS CALL HERE
-    }
+    // async function handleUploadFile(fileName, fileText) {
+    //     // API CALL FUNCTION AXIOS CALL HERE
+    // }
 
     return(
         <div className="file_switcher">
             <div className="file_buttons">
-                <FileUploader onUpload={(text, name) => handleUpload(text, name)} handleUploadFile={handleUploadFile} />
+                <FileUploader onUpload={(text, name) => handleUpload(text, name)} />
                 <div style={{ marginLeft: '10px', display: 'flex', gap: '10px' }}>
                     {docNames.map((name, index) => <span key={index}>{name}</span>)}
                 </div>

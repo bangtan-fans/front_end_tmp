@@ -15,7 +15,7 @@ function FileUploader({ onUpload, handleFileUpload }) {
       })
       reader.readAsText(file)
       //console.log(file.name.slice(0,-4))
-    }]
+    }
   }
   //console.log(text, filename)
   return (
