@@ -24,3 +24,10 @@ body {
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
 }
 
+.content {
+    display: none;
+}
+
+.active-content {
+    display: block;
+}

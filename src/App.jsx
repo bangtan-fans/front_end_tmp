@@ -1,7 +1,8 @@
 import './App.css'
 import Chatbox from "./components/Chatbox.jsx"
-import Document from "./components/Document.jsx"
+//import Document from "./components/Document.jsx"
 import FileUploader from "./components/FileUploader.jsx"
+import FileSwitcher from "./components/FileSwitcher.jsx"
 
 import { useState, useEffect } from "react"
 
@@ -28,7 +29,7 @@ function App() {
     <>
       <div className="container">
         <div className="side-div">
-          <Document />
+          <FileSwitcher />
         </div>
         <div className="side-div">
           {/*<button onClick={handleClickUpload}>Upload Text File</button>
