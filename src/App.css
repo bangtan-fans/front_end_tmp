@@ -93,8 +93,11 @@
   border-radius: 5px;
   margin-bottom: 5px;
   font-size: 0.8rem;
-  font-weight: bold;
   text-align: center;
+}
+
+.document-display-card:hover{
+  background-color: #ff9900;
 }
 
 .document-sidebar-title {
@@ -102,7 +105,10 @@
   font-size: 12px;
   font-weight: bold;
   font-size: 1rem;
+}
 
+.document-name{
+  font-weight: bold;
 }
 
 
@@ -112,6 +118,8 @@
   display: inline-block;
   width: 30px;
   height: 17px;
+  border: 2px solid black;
+  border-radius: 17px
 }
 
 .switch input { 
@@ -135,8 +143,8 @@
 .slider:before {
   position: absolute;
   content: "";
-  height: 13px;
-  width: 13px;
+  height: 10px;
+  width: 10px;
   left: 2px;
   bottom: 2px;
   background-color: white;
@@ -145,11 +153,11 @@
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #ff9900;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #ff9900;
 }
 
 input:checked + .slider:before {
@@ -165,4 +173,8 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+.source-doc-display{
+  background-color: #282c34;
 }

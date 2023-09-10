@@ -10,7 +10,6 @@ function Checkbox({ id, handleChange, toggleTab }) {
     />
     <span className="slider round"></span>
     </label>
-    <button onClick={() => toggleTab(2)}></button>
     </div>
   )
 }
