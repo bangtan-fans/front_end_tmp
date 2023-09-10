@@ -3,10 +3,14 @@ import ChatboxHistory from "./ChatboxHistory.jsx"
 import Chatbox from "./Chatbox.jsx"
 import axios from 'axios';
 
-function ChatApp({ state }) {
+function ChatApp({ state, filteredDocs }) {
   const [chats, setChats] = useState([])
   const [selectedChatID, setSelectedChatID] = useState(null)
   const [selectedMessages, setSelectedMessages] = useState([])
+
+  useEffect(() => {
+    console.log("FDFD", filteredDocs)
+  }, filteredDocs)
 
   async function getAllIDs() {
     try {
@@ -57,13 +61,13 @@ function ChatApp({ state }) {
     }
   }
 
-  async function sendMessage(chatID, message) {
-    console.log("TRIES TO SEND", chatID, message)
+  async function sendMessage(chatID, message, filteredDocs) {
+    console.log("TRIES TO SEND", chatID, message, filteredDocs)
     try {
       const postData = {
         "chat_id": chatID,
         "prompt": message,
-        "source_docs": []
+        "source_docs": filteredDocs
       }
       console.log("trying to make request now")
       const response = await axios.post(`${process.env.REACT_APP_URL}/submit_prompt`, postData)
@@ -75,7 +79,7 @@ function ChatApp({ state }) {
 
   async function handleSendMessage(message) {
     try {
-      await sendMessage(selectedChatID, message)  // API CALL
+      await sendMessage(selectedChatID, message, filteredDocs)  // API CALL
       // Fetch updated messages after sending a new one
 
       const updatedMessages = await getAllMessages(selectedChatID)
