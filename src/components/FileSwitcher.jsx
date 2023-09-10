@@ -73,7 +73,7 @@ function FileSwitcher({ selectedDocs }) {
 
     async function saveCentralDoc() {
         try {
-            const response = away axios.get(`${}`)
+            const response = await axios.get(``)
         } catch (error) {
             console.error('Error saving file', error)
         }
@@ -86,7 +86,7 @@ function FileSwitcher({ selectedDocs }) {
                 <div style={{ marginLeft: '10px', display: 'flex', gap: '10px' }}>
                     {docNames.map((name, index) => <span key={index}>{name}</span>)}
                 </div>
-                <button className="save-button" onClick={() => }
+                {/*<button className="save-button" onClick={() => {}} />*/}
                 {/* <button className={toggleState === 1 ? "active-tabs" : "tabs"} onClick={() => toggleTab(1)}>Central Document</button> */}
                 {/* <button className={toggleState === 2 ? "active-tabs" : "tabs"} onClick={() => toggleTab(2)}>Source Document</button> */}
             </div>
@@ -96,7 +96,7 @@ function FileSwitcher({ selectedDocs }) {
                     <Document />
                 </div>
                 <div className={toggleState === 2 ? "active-content" : "content"}>
-                    <SourceDocument selectedDoc={selectedDoc} retrieveSourceFile={handleRetrieve} fileNames={selectedDocs}/>
+                    {/*<SourceDocument selectedDoc={selectedDoc} retrieveSourceFile={handleRetrieve} fileNames={selectedDocs}/>*/}
                 </div>
                 <div className={toggleState === 3 ? "active-content" : "content"}>
                     <p></p>

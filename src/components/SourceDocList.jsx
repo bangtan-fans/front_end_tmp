@@ -1,9 +1,11 @@
+import { useEffect } from "react"
+
 import Checkbox from "./Checkbox.jsx"
 
 function SourceDocList({ docs, onCheckboxChange }) {
-  console.log("taylor's", docs)
   return (
     <>
+      <div>SOURCE DOCUMENTS</div>
       {docs.map(x =>
         <div>
           <Checkbox id={x.name} handleChange={onCheckboxChange} />
