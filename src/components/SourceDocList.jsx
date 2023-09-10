@@ -2,14 +2,17 @@ import { useEffect } from "react"
 
 import Checkbox from "./Checkbox.jsx"
 
+
 function SourceDocList({ docs, onCheckboxChange }) {
   return (
     <>
-      <div>SOURCE DOCUMENTS</div>
+      <div class = "document-sidebar-title" >SOURCE DOCUMENTS</div>
       {docs.map(x =>
-        <div>
+        <div class="document-display-card">
+          <label>{x.name}</label> 
+          
           <Checkbox id={x.name} handleChange={onCheckboxChange} />
-          <label>{x.name}</label>
+          <span>Connect</span>
         </div>
       )}
     </>

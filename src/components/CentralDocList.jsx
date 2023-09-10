@@ -6,8 +6,9 @@ function CentralDocList({ docs, onCheckboxChange }) {
       <div>CENTRAL DOCUMENTS</div>
       {docs.map(x =>
         <div>
-          <Checkbox id={x.name} handleChange={onCheckboxChange} />
           <label>{x.name}</label>
+          <Checkbox id={x.name} handleChange={onCheckboxChange} />
+
         </div>
       )}
     </>
