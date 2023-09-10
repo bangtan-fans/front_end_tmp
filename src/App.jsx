@@ -56,7 +56,7 @@ function App() {
         }
         console.log("trying to make request now")
         const response = await axios.post(`${process.env.REACT_APP_URL}/add_document`, postData)
-        setSourceDocs(prevSourceDocs => [...prevSourceDocs, {name: fileName, content: fileText, checked: false, doc_type: "source_doc"}])
+        setSourceDocs(prevSourceDocs => [...prevSourceDocs, {name: fileName.slice(0, 15), content: fileText, checked: false, doc_type: "source_doc"}])
     } catch (error) {
         console.error('There was an error!', error)
     }

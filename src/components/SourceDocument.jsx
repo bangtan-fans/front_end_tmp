@@ -4,7 +4,9 @@ import React from "react"
 var hardcoded = "yolo"
 
 function SourceDocument({selectedDoc}) {
-    if (selectedDoc === null) return(<></>)
+    if (selectedDoc === null || selectedDoc.content === null) {
+        return(<></>)
+    }
     return (
         <div className="selected-doc">{selectedDoc.content}</div>
     )
