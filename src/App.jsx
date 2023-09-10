@@ -4,8 +4,7 @@ import Chatbox from "./components/Chatbox.jsx"
 // import FileUploader from "./components/FileUploader.jsx"
 import FileApp from "./components/FileApp.jsx"
 import ChatApp from "./components/ChatApp.jsx"
-import axios from 'axios';
-
+import axios from 'axios'
 
 import { useState, useEffect } from "react"
 
@@ -14,7 +13,6 @@ function App() {
   const [filteredDocs, setFilteredDocs] = useState([])
 
   function handleCheckboxChange(id) {
-    console.log("BEFORE", sourceDocs)
     setSourceDocs(sourceDocs.map((x) => {
       if (x.name === id) {
         return {name: x.name, checked: !x.checked}
@@ -44,18 +42,6 @@ function App() {
     }
     fetchSourceDocs()
   }, [])
-
-  function updateFilteredData() {
-
-  }
-
-  useEffect(() => {
-    console.log("SDS", sourceDocs)
-    console.log(sourceDocs.filter(x => x.checked === true))
-    console.log("set filtered docs", filteredDocs)
-  }, [sourceDocs])
-
-
   return (
     <>
       <div className="container">
@@ -63,7 +49,7 @@ function App() {
           <FileApp sourceDocs={sourceDocs} handleCheckboxChange={handleCheckboxChange} />
         </div>
         <div className="side-div">
-          <ChatApp filteredDocs={sourceDocs.filter(x => x.checked)} />
+          <ChatApp filteredDocs={sourceDocs.filter(x => x.checked === true)} />
         </div>
       </div>
     </>

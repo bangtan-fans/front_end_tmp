@@ -8,14 +8,13 @@ function ChatApp({ state, filteredDocs }) {
   const [selectedChatID, setSelectedChatID] = useState(null)
   const [selectedMessages, setSelectedMessages] = useState([])
 
-  useEffect(() => {
+  useEffect(() => {  // I have no idea how this works
     console.log("FDFD", filteredDocs)
-  }, filteredDocs)
+  }, [state, filteredDocs])
 
   async function getAllIDs() {
     try {
         const response = await axios.get(`${process.env.REACT_APP_URL}/get_all_ids`)
-        // console.log(response)
         return response.data
     } catch (error) {
         console.error('Error fetching messages:', error)
@@ -26,9 +25,7 @@ function ChatApp({ state, filteredDocs }) {
   useEffect(() => {
     async function fetchChats() {
       try {
-        const chatList = await getAllIDs()  // API CALL
-        // const chatList = [{chatID: "12345", chatName: "somechat"}]  // TEMP DATA
-        console.log(chatList)
+        const chatList = await getAllIDs()
         setChats(chatList)
       } catch (err) {
         console.error('Error fetching chats:', err)
@@ -39,9 +36,7 @@ function ChatApp({ state, filteredDocs }) {
 
   async function getAllMessages(chatID) {
     try {
-      console.log(chatID)
       const response = await axios.get(`${process.env.REACT_APP_URL}/get_all_messages/${chatID}`)
-      console.log("res",response)
       return response.data
     } catch (error) {
       console.error('Error fetching messages:', error)
@@ -62,13 +57,14 @@ function ChatApp({ state, filteredDocs }) {
   }
 
   async function sendMessage(chatID, message, filteredDocs) {
-    console.log("TRIES TO SEND", chatID, message, filteredDocs)
+    console.log("TRIES TO SEND", chatID, message, filteredDocs.map(x => x.name))
     try {
       const postData = {
         "chat_id": chatID,
         "prompt": message,
-        "source_docs": filteredDocs
+        "source_docs": filteredDocs.map(x => x.name)
       }
+      console.log(postData)
       console.log("trying to make request now")
       const response = await axios.post(`${process.env.REACT_APP_URL}/submit_prompt`, postData)
       console.log(response.data)
@@ -107,16 +103,6 @@ function ChatApp({ state, filteredDocs }) {
       console.error("Error creating new chat:", err)
     }
   }
-
-  // async function deleteChat(chatID) {
-  //   try {
-  //     const response = await axios.get(`${process.env.REACT_APP_URL}/delete_chat_id/${chatID}`)
-  //     console.log("res", response)
-  //   } catch (error) {
-  //     console.error('Error creating new chat:', error)
-  //     throw error
-  //   }
-  // }
 
   async function deleteChat(chatID) {
     try {

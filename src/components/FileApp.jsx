@@ -17,7 +17,8 @@ function FileApp({ sourceDocs, handleCheckboxChange }) {
         </div>
         <FileSwitcher selectedDocs={sourceDocs.filter(x => x.checked)} className="document-box" />
       </div>
-  </>)
+    </>
+  )
 }
 
 export default FileApp
