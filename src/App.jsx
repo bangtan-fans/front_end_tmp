@@ -10,6 +10,7 @@ import { useState, useEffect } from "react"
 
 
 function App() {
+
   const [sourceDocs, setSourceDocs] = useState([])
   const [filteredDocs, setFilteredDocs] = useState([])
 
@@ -25,7 +26,7 @@ function App() {
   async function getAllSourceDocs() {
     try {
         const response = await axios.get(`${process.env.REACT_APP_URL}/get_all_documents`)
-        console.log(response.data)
+        //console.log(response.data)
         return response.data
     } catch (error) {
         console.error('Error fetching messages:', error)
@@ -37,7 +38,7 @@ function App() {
     async function fetchSourceDocs() {
       try {
         const allDocsList = await getAllSourceDocs()  // API CALL
-        console.log(allDocsList)
+        //console.log(allDocsList)
         setSourceDocs(allDocsList.map((x) => ({name: x.filename, checked: false, doc_type: x.doc_type, content: x.content})))  // TODO: might be problematic
       } catch (err) {
         console.error('Error fetching chats:', err)
@@ -50,7 +51,7 @@ function App() {
     <>
       <div className="container">
         <div className="side-div">
-          <FileApp sourceDocs={sourceDocs} handleCheckboxChange={handleCheckboxChange} />
+          <FileApp sourceDocs={sourceDocs} appendDocs={setSourceDocs} handleCheckboxChange={handleCheckboxChange} />
         </div>
         <div className="side-div">
           <ChatApp filteredDocs={sourceDocs.filter(x => x.checked === true)} />

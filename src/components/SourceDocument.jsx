@@ -19,9 +19,12 @@ function SourceDocument({selectedDoc}) {
     // const content = retrieveSourceFile(fileName[1])
     //document.getElementById("content").innerHTML = content.data;
     //console.log(content)
-    return (
-        <div >{selectedDoc.content}</div>
-    )
+    try {
+        return (
+            <div >{selectedDoc.content}</div>
+        )
+    } catch { return <></>}
+
 }
 
 // const SourceDocument = (props) => {

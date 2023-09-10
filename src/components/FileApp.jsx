@@ -10,21 +10,22 @@ import FileUploader from "./FileUploader.jsx"
 import axios from 'axios';
 
 
+function FileApp({ sourceDocs, appendDocs, handleCheckboxChange }) {
 
-function FileApp({ sourceDocs, handleCheckboxChange }) {
-  
   const [dispDoc, setDispDoc] = useState(null)
 
   // const [selectedDoc, setSelectedDoc] = useState([])
 
-  function handleToggleClick(id) {
+  function handleToggleClick(id, content) {
     //setDispDoc(id)
+    saveCentralFile(id, content)
     handleRetrieve(id)
   }
 
   useEffect(() => {
     console.log("dd", dispDoc)
   }, [dispDoc])
+
 
   async function retrieveSourceFile(fileName) {
       try {
@@ -42,20 +43,34 @@ function FileApp({ sourceDocs, handleCheckboxChange }) {
           // const msgs = [{name: "taylor", message: "swift"}]  // TEMP DATA
           setDispDoc(response)
           // setSelectedChatID(chatID)
-          console.log("state is now", dispDoc)
+          //console.log("state is now", dispDoc)
       } catch (err) {
           console.error('Error fetching messages:', err)
       }
+  }
+
+  async function saveCentralFile(fileName, content) {
+    try {
+      const postData = {
+        "filename": fileName,
+        "content": content,
+        "doc_type": "central_doc"
+      }
+      const response = await axios.post(`${process.env.REACT_APP_URL}/update_document`, postData)
+      console.log("saving")
+    } catch (error) {
+      console.error('There was an error!', error)
+    }
   }
 
   return (
     <>
       <div className="file-app">
         <div className="doclist-section">
-          <CentralDocList docs={sourceDocs.filter(x => x.doc_type === "central_doc")} onCheckboxChange={handleCheckboxChange} onButtonPress={handleToggleClick} className="top-doclist" />
+          <CentralDocList docs={sourceDocs.filter(x => x.doc_type === "central_doc")} appendDocs={appendDocs} onCheckboxChange={handleCheckboxChange} onButtonPress={handleToggleClick} className="top-doclist" />
           <SourceDocList docs={sourceDocs.filter(x => x.doc_type === "source_doc")} onCheckboxChange={handleCheckboxChange} onButtonPress={handleToggleClick} className="bottom-doclist" />
         </div>
-        <FileSwitcher dispDoc={dispDoc} selectedDocs={sourceDocs.filter(x => x.checked)} className="document-box" />
+        <FileSwitcher dispDoc={dispDoc} selectedDocs={sourceDocs.filter(x => x.checked)} className="document-box" retrieveFile={retrieveSourceFile} saveFile = {saveCentralFile}/>
       </div>
     </>
   )
