@@ -16,7 +16,7 @@ function App() {
   function handleCheckboxChange(id) {
     setSourceDocs(sourceDocs.map((x) => {
       if (x.name === id) {
-        return {name: x.name, checked: !x.checked}
+        return {checked: !x.checked, name: x.name, doc_type: x.doc_type}
       }
       return x
     }))
