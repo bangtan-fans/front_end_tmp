@@ -5,14 +5,18 @@ import SourceDocument from "./SourceDocument.jsx"
 import FileUploader from "./FileUploader.jsx"
 import axios from 'axios';
 
+
 function FileSwitcher({ selectedDocs }) {
     useEffect(() => {
     }, [])
-
     //const [docTexts, setDocTexts] = useState([])  // Saves all of the document text which has been uploaded so far
     const [docNames, setDocNames] = useState([])
     const [showUploader, setShowUploader] = useState(false)  // Toggle open source document upload area  
     const [selectedDoc, setSelectedDoc] = useState([])
+
+    // const [centralDoc, setCentralDoc] = useState([])
+
+    // function changeCentralDoc
 
     function handleUpload(text, docName) {
         //setDocTexts(prevDocTexts => [...prevDocTexts, text])
@@ -82,7 +86,7 @@ function FileSwitcher({ selectedDocs }) {
                     <Document />
                 </div>
                 <div className={toggleState === 2 ? "active-content" : "content"}>
-                    <SourceDocument selectedDoc={selectedDoc} retrieveSourceFile={handleRetrieve} fileName={selectedDocs}/>
+                    <SourceDocument selectedDoc={selectedDoc} retrieveSourceFile={handleRetrieve} fileNames={selectedDocs}/>
                 </div>
             </div>
         </div>
