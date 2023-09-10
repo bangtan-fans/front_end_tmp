@@ -24,7 +24,7 @@ function App() {
 
   async function getAllSourceDocs() {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_URL}/get_all_source_documents`)
+        const response = await axios.get(`${process.env.REACT_APP_URL}/get_all_documents`)
         return response.data
     } catch (error) {
         console.error('Error fetching messages:', error)
@@ -36,7 +36,7 @@ function App() {
     async function fetchSourceDocs() {
       try {
         const allDocsList = await getAllSourceDocs()  // API CALL
-        setSourceDocs(allDocsList.map((x) => ({name: x, checked: false})))  // TODO: might be problematic
+        setSourceDocs(allDocsList.map((x) => ({name: x, checked: false, doc_type: x.doc_type, content: x.content})))  // TODO: might be problematic
       } catch (err) {
         console.error('Error fetching chats:', err)
       }

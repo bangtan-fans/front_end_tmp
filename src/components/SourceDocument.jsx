@@ -9,6 +9,9 @@ function SourceDocument({selectedDoc, retrieveSourceFile, fileNames}) {
         console.log("TEMP:", temp[0].name)
 
         const content = retrieveSourceFile(temp[0].name)
+
+        console.log("SOURCE DOC:", selectedDoc)
+        console.log("return: ", content)
     } catch {
         console.log("whoopsies")
     }
@@ -16,7 +19,7 @@ function SourceDocument({selectedDoc, retrieveSourceFile, fileNames}) {
     //document.getElementById("content").innerHTML = content.data;
     //console.log(content)
     return(
-        <div>{selectedDoc}</div>
+        <div>{selectedDoc.content}</div>
     )
 }
 
