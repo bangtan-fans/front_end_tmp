@@ -33,6 +33,7 @@ function CentralDocList({ docs, appendDocs, onCheckboxChange, onButtonPress, han
       <div>CENTRAL DOCUMENTS</div>
         <div className="file_buttons">
           <button onClick={promptUser}>Add Central Document</button>
+      <div  class = "document-sidebar-title">CENTRAL DOCUMENTS</div>
         </div>
         {docs.map(x =>
           <div>

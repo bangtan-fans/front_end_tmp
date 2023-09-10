@@ -6,7 +6,8 @@ import FileUploader from "./FileUploader.jsx"
 import axios from 'axios';
 
 
-function FileSwitcher({ selectedDocs, dispDoc, retrieveFile, saveFile}) {
+
+function FileSwitcher({ selectedDocs, dispDoc, handleFileUpload, retrieveFile, saveFile }) {
     useEffect(() => {
     }, [])
     //const [docTexts, setDocTexts] = useState([])  // Saves all of the document text which has been uploaded so far
@@ -20,13 +21,6 @@ function FileSwitcher({ selectedDocs, dispDoc, retrieveFile, saveFile}) {
     const toggleTab = (index) => {
         setToggleState(index)
     }
-    // async function saveCentralDoc() {
-    //     try {
-    //         const response = await axios.get(``)
-    //     } catch (error) {
-    //         console.error('Error saving file', error)
-    //     }
-    // }
 
     return(
         <div className="file_switcher">

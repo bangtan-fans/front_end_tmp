@@ -52,12 +52,14 @@ function SourceDocList({ docs, onCheckboxChange, onButtonPress }) {
         {/* <button className={toggleState === 1 ? "active-tabs" : "tabs"} onClick={() => toggleTab(1)}>Central Document</button>
         <button className={toggleState === 2 ? "active-tabs" : "tabs"} onClick={() => toggleTab(2)}>Source Document</button> */}
       </div>
-        {docs.map(x =>
-          <div class="document-display-card"  onClick={() => onButtonPress(x.name)}>
-            <label className="document-name">{x.name}</label>
-            <br></br> 
-            <label>Include</label>
-            <Checkbox id={x.name} handleChange={onCheckboxChange} />
+      {docs.map(x =>
+        <div class="document-display-card"  onClick={() => onButtonPress(x.name)}>
+          <label className="document-name">{x.name}</label>
+          <br></br> 
+          <div >          
+          <label style={{display: "inline-block", marginRight:"5px"}}>Include</label>
+          <Checkbox id={x.name} handleChange={onCheckboxChange} />
+          </div>
         </div>
       )}
     </>

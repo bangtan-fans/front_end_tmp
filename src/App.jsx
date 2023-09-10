@@ -47,11 +47,28 @@ function App() {
     fetchSourceDocs()
   }, [])
 
+  async function handleFileUpload(fileName, fileText) {
+    console.log("trying to send", fileName, fileText)
+    try {
+        const postData = {
+          "filename": fileName,
+          "content": fileText,
+          "doc_type": "source_doc"
+        }
+        console.log("trying to make request now")
+        const response = await axios.post(`${process.env.REACT_APP_URL}/add_document`, postData)
+        setSourceDocs(prevSourceDocs => [...prevSourceDocs, {name: fileName.slice(0, 15), content: fileText, checked: false, doc_type: "source_doc"}])
+    } catch (error) {
+        console.error('There was an error!', error)
+    }
+  }
+
+
   return (
     <>
       <div className="container">
         <div className="side-div">
-          <FileApp sourceDocs={sourceDocs} appendDocs={setSourceDocs} handleCheckboxChange={handleCheckboxChange} />
+          <FileApp sourceDocs={sourceDocs} appendDocs={setSourceDocs} handleCheckboxChange={handleCheckboxChange} handleFileUpload={handleFileUpload} />
         </div>
         <div className="side-div">
           <ChatApp filteredDocs={sourceDocs.filter(x => x.checked === true)} />

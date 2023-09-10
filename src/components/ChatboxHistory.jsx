@@ -8,7 +8,7 @@ function ChatboxHistory({ chats, onSelectChat, handleNewChat, handleDeleteChat }
           <div key={chat.id} onClick={() => onSelectChat(chat.id)}>
             {chat.name}
           </div>
-          <button onClick={() => handleDeleteChat(chat.id)}>x</button>
+          <button onClick={() => handleDeleteChat(chat.id)}>Delete {chat.name}</button>
         </>
       ))}
     </div>
