@@ -7,7 +7,7 @@ function Checkbox({ id, handleChange, toggleTab }) {
       value={id}
       onChange={(e) => handleChange(e.target.value)}
     />
-    <button onClick={() => toggleTab(2)}></button>
+    {/* <button onClick={() => toggleTab(2)}></button> */}
     </div>
   )
 }
