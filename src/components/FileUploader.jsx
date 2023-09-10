@@ -27,7 +27,7 @@ function FileUploader({ onUpload, handleFileUpload }) {
         })  
         reader.readAsText(file)
       }
-      else if (file.name.slice(-4) === ".png" || file.name.slice(-5) === ".jpeg") {
+      else if (file.name.slice(-4) === ".png" || file.name.slice(-5) === ".jpeg" || file.name.slice(-4) === ".jpg") {
         async function recogniseText() {
           if (file) {
             const result = await Tesseract.recognize(URL.createObjectURL(file))

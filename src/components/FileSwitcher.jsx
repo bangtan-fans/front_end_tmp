@@ -6,7 +6,7 @@ import FileUploader from "./FileUploader.jsx"
 import axios from 'axios';
 
 
-function FileSwitcher({ selectedDocs, dispDoc }) {
+function FileSwitcher({ selectedDocs, dispDoc, handleFileUpload }) {
     useEffect(() => {
     }, [])
     //const [docTexts, setDocTexts] = useState([])  // Saves all of the document text which has been uploaded so far
@@ -33,21 +33,21 @@ function FileSwitcher({ selectedDocs, dispDoc }) {
         setToggleState(index)
     }
 
-    async function handleUploadFile(fileName, fileText) {
-        console.log("trying to send", fileName, fileText)
-        try {
-            const postData = {
-              "filename": fileName,
-              "content": fileText,
-              "doc_type": "source_doc"
-            }
-            console.log("trying to make request now")
-            const response = await axios.post(`${process.env.REACT_APP_URL}/add_document`, postData)
-            console.log(response.data)
-          } catch (error) {
-            console.error('There was an error!', error)
-          }
-      }
+    // async function handleUploadFile(fileName, fileText) {
+    //     console.log("trying to send", fileName, fileText)
+    //     try {
+    //         const postData = {
+    //           "filename": fileName,
+    //           "content": fileText,
+    //           "doc_type": "source_doc"
+    //         }
+    //         console.log("trying to make request now")
+    //         const response = await axios.post(`${process.env.REACT_APP_URL}/add_document`, postData)
+    //         console.log(response.data)
+    //     } catch (error) {
+    //         console.error('There was an error!', error)
+    //     }
+    // }
 
     // async function saveCentralDoc() {
     //     try {
@@ -60,7 +60,7 @@ function FileSwitcher({ selectedDocs, dispDoc }) {
     return(
         <div className="file_switcher">
             <div className="file_buttons">
-                <FileUploader onUpload={(text, name) => handleUpload(text, name)} handleFileUpload={handleUploadFile} />
+                <FileUploader onUpload={(text, name) => handleUpload(text, name)} handleFileUpload={handleFileUpload} />
                 <div style={{ marginLeft: '10px', display: 'flex', gap: '10px' }}>
                     {docNames.map((name, index) => <span key={index}>{name}</span>)}
                 </div>
@@ -71,6 +71,7 @@ function FileSwitcher({ selectedDocs, dispDoc }) {
 
             <div className="file_content">
                 <div className={dispDoc && dispDoc.doc_type === "central_doc" ? "active-content" : "content"}>
+                    {dispDoc && <div>Currently editing: {dispDoc.filename}</div>}
                     <Document />
                 </div> 
                 <div className={dispDoc && dispDoc.doc_type === "source_doc" ? "active-content" : "content"}>
