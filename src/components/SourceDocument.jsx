@@ -20,7 +20,7 @@ function SourceDocument({selectedDoc}) {
     //document.getElementById("content").innerHTML = content.data;
     //console.log(content)
     return (
-        <div >{selectedDoc.content}</div>
+        <div className="selected-doc">{selectedDoc.content}</div>
     )
 }
 

@@ -1,6 +1,6 @@
 function Checkbox({ id, handleChange, toggleTab }) {
   return (
-    <div>
+    <div style={{display: "inline-block"}}>
       <label className="switch">
     <input
       type="checkbox"

@@ -174,7 +174,3 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
-.source-doc-display{
-  background-color: #282c34;
-}

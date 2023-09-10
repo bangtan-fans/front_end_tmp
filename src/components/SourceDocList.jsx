@@ -11,8 +11,11 @@ function SourceDocList({ docs, onCheckboxChange, onButtonPress }) {
         <div class="document-display-card"  onClick={() => onButtonPress(x.name)}>
           <label className="document-name">{x.name}</label>
           <br></br> 
-          <label>Include</label>
+          <div >          
+          <label style={{display: "inline-block", marginRight:"5px"}}>Include</label>
           <Checkbox id={x.name} handleChange={onCheckboxChange} />
+          </div>
+
         </div>
       )}
     </>

@@ -72,7 +72,7 @@ function FileSwitcher({ selectedDocs, dispDoc }) {
             <div className="file_content">
                 <div className={dispDoc && dispDoc.doc_type === "central_doc" ? "active-content" : "content"}>
                     <Document />
-                </div>
+                </div> 
                 <div className={dispDoc && dispDoc.doc_type === "source_doc" ? "active-content" : "content"}>
                     <SourceDocument selectedDoc={dispDoc}/>
                 </div>
