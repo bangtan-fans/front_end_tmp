@@ -1,6 +1,12 @@
 import SourceDocument from "./SourceDocument"
 import Tesseract from "tesseract.js"
 import React, { useEffect, useState } from "react"
+import * as pdfjs from "pdfjs-dist";
+import pdfWorker from 'pdfjs-dist/build/pdf.worker.entry';
+
+pdfjs.GlobalWorkerOptions.workerSrc = pdfWorker;
+
+
  
 // var text;
 
@@ -21,7 +27,7 @@ function FileUploader({ onUpload, handleFileUpload }) {
         })  
         reader.readAsText(file)
       }
-      else {
+      else if (file.name.slice(-4) === ".png" || file.name.slice(-5) === ".jpeg") {
         async function recogniseText() {
           if (file) {
             const result = await Tesseract.recognize(URL.createObjectURL(file))
@@ -29,6 +35,33 @@ function FileUploader({ onUpload, handleFileUpload }) {
           }
         }
         recogniseText()
+      }
+      else if (file.name.slice(-4) === ".pdf") {
+        const loadingTask = pdfjs.getDocument(URL.createObjectURL(file))
+        loadingTask.promise.then(async pdf => {
+          let fullText = ""
+          const canvas = document.createElement("canvas")
+          const context = canvas.getContext("2d")
+
+          for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+            const page = await pdf.getPage(pageNum)
+
+            const scale = 1.5
+            const viewport = page.getViewport({ scale })
+            canvas.height = viewport.height
+            canvas.width = viewport.width
+
+            await page.render({ canvasContext: context, viewport: viewport }).promise
+
+            const result = await Tesseract.recognize(canvas)
+            fullText += result.data.text + "\n"; // Concatenate the text of each page
+          }
+
+          handleFileUpload(file.name.split('.').slice(0, -1).join('.'), fullText)
+        })
+      }
+      else {
+        console.log("File type not supported :(")
       }
     }
   }
