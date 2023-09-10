@@ -6,6 +6,9 @@ import FileUploader from "./FileUploader.jsx"
 import axios from 'axios';
 
 function FileSwitcher({ selectedDocs }) {
+    useEffect(() => {
+    }, [])
+
     //const [docTexts, setDocTexts] = useState([])  // Saves all of the document text which has been uploaded so far
     const [docNames, setDocNames] = useState([])
     const [showUploader, setShowUploader] = useState(false)  // Toggle open source document upload area  
