@@ -43,7 +43,7 @@ function FileSwitcher({ selectedDocs }) {
               "doc_type": "source_doc"
             }
             console.log("trying to make request now")
-            const response = await axios.post(`${process.env.REACT_APP_URL}/add_source_document`, postData)
+            const response = await axios.post(`${process.env.REACT_APP_URL}/add_document`, postData)
             console.log(response.data)
           } catch (error) {
             console.error('There was an error!', error)
@@ -52,11 +52,11 @@ function FileSwitcher({ selectedDocs }) {
 
     async function retrieveSourceFile(fileName) {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_URL}/get_source_document/${fileName}`)
+            const response = await axios.get(`${process.env.REACT_APP_URL}/get_document/${fileName}`)
             return response.data
         } catch (error) {
             console.error('Error fetching messages:', error)
-            throw error
+            //throw error
         }
     }
 
@@ -71,6 +71,14 @@ function FileSwitcher({ selectedDocs }) {
         }
     }
 
+    async function saveCentralDoc() {
+        try {
+            const response = await axios.get(``)
+        } catch (error) {
+            console.error('Error saving file', error)
+        }
+    }
+
     return(
         <div className="file_switcher">
             <div className="file_buttons">
@@ -78,8 +86,9 @@ function FileSwitcher({ selectedDocs }) {
                 <div style={{ marginLeft: '10px', display: 'flex', gap: '10px' }}>
                     {docNames.map((name, index) => <span key={index}>{name}</span>)}
                 </div>
-                <button className={toggleState === 1 ? "active-tabs" : "tabs"} onClick={() => toggleTab(1)}>Central Document</button>
-                <button className={toggleState === 2 ? "active-tabs" : "tabs"} onClick={() => toggleTab(2)}>Source Document</button>
+                {/*<button className="save-button" onClick={() => {}} />*/}
+                {/* <button className={toggleState === 1 ? "active-tabs" : "tabs"} onClick={() => toggleTab(1)}>Central Document</button> */}
+                {/* <button className={toggleState === 2 ? "active-tabs" : "tabs"} onClick={() => toggleTab(2)}>Source Document</button> */}
             </div>
 
             <div className="file_content">
@@ -87,7 +96,10 @@ function FileSwitcher({ selectedDocs }) {
                     <Document />
                 </div>
                 <div className={toggleState === 2 ? "active-content" : "content"}>
-                    <SourceDocument selectedDoc={selectedDoc} retrieveSourceFile={handleRetrieve} fileNames={selectedDocs}/>
+                    {/*<SourceDocument selectedDoc={selectedDoc} retrieveSourceFile={handleRetrieve} fileNames={selectedDocs}/>*/}
+                </div>
+                <div className={toggleState === 3 ? "active-content" : "content"}>
+                    <p></p>
                 </div>
             </div>
         </div>

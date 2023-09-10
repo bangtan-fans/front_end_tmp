@@ -12,8 +12,8 @@ function FileApp({ sourceDocs, handleCheckboxChange }) {
     <>
       <div className="file-app">
         <div className="doclist-section">
-          <CentralDocList className="top-doclist" />
-          <SourceDocList docs={sourceDocs} onCheckboxChange={handleCheckboxChange} className="bottom-doclist" />
+          <CentralDocList docs={sourceDocs.filter(x => x.doc_type === "central_doc")} onCheckboxChange={handleCheckboxChange} className="top-doclist" />
+          <SourceDocList docs={sourceDocs.filter(x => x.doc_type === "source_doc")} onCheckboxChange={handleCheckboxChange} className="bottom-doclist" />
         </div>
         <FileSwitcher selectedDocs={sourceDocs.filter(x => x.checked)} className="document-box" />
       </div>

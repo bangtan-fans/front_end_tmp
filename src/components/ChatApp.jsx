@@ -62,7 +62,7 @@ function ChatApp({ state, filteredDocs }) {
       const postData = {
         "chat_id": chatID,
         "prompt": message,
-        "source_docs": filteredDocs.map(x => x.name)
+        "documents_list": filteredDocs.map(x => x.name)
       }
       console.log(postData)
       console.log("trying to make request now")

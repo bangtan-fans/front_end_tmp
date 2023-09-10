@@ -16,7 +16,7 @@ function App() {
   function handleCheckboxChange(id) {
     setSourceDocs(sourceDocs.map((x) => {
       if (x.name === id) {
-        return {name: x.name, checked: !x.checked}
+        return {checked: !x.checked, name: x.name, doc_type: x.doc_type}
       }
       return x
     }))
@@ -24,7 +24,8 @@ function App() {
 
   async function getAllSourceDocs() {
     try {
-        const response = await axios.get(`${process.env.REACT_APP_URL}/get_all_source_documents`)
+        const response = await axios.get(`${process.env.REACT_APP_URL}/get_all_documents`)
+        console.log(response.data)
         return response.data
     } catch (error) {
         console.error('Error fetching messages:', error)
@@ -36,13 +37,15 @@ function App() {
     async function fetchSourceDocs() {
       try {
         const allDocsList = await getAllSourceDocs()  // API CALL
-        setSourceDocs(allDocsList.map((x) => ({name: x, checked: false})))  // TODO: might be problematic
+        console.log(allDocsList)
+        setSourceDocs(allDocsList.map((x) => ({name: x.filename, checked: false, doc_type: x.doc_type, content: x.content})))  // TODO: might be problematic
       } catch (err) {
         console.error('Error fetching chats:', err)
       }
     }
     fetchSourceDocs()
   }, [])
+
   return (
     <>
       <div className="container">
