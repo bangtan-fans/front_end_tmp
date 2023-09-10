@@ -51,7 +51,7 @@ function FileApp({ state }) {
           <CentralDocList className="top-doclist" />
           <SourceDocList docs={sourceDocs} onCheckboxChange={handleCheckboxChange} className="bottom-doclist" />
         </div>
-        <FileSwitcher selectedDocs={sourceDocs.filter((x) => x.checked)} className="document-box" />
+        <FileSwitcher fileName={sourceDocs} className="document-box" />
       </div>
   </>)
 }
