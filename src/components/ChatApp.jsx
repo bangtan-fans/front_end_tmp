@@ -9,7 +9,7 @@ function ChatApp({ state, filteredDocs }) {
   const [selectedMessages, setSelectedMessages] = useState([])
 
   useEffect(() => {  // I have no idea how this works
-    console.log("FDFD", filteredDocs)
+    //console.log("FDFD", filteredDocs)
   }, [state, filteredDocs])
 
   async function getAllIDs() {
