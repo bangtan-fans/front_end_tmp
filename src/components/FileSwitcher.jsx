@@ -39,7 +39,8 @@ function FileSwitcher({ selectedDocs }) {
         try {
             const postData = {
               "filename": fileName,
-              "content": fileText
+              "content": fileText,
+              "doc_type": "source_doc"
             }
             console.log("trying to make request now")
             const response = await axios.post(`${process.env.REACT_APP_URL}/add_source_document`, postData)
