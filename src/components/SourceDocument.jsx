@@ -3,9 +3,9 @@ import React from "react"
 
 var hardcoded = "yolo"
 
-function SourceDocument({selectedDoc, retrieveSourceFile, fileName}) {
-    console.log("FileName:", fileName)
-    const temp = fileName.filter((x) => x.checked)
+function SourceDocument({selectedDoc, retrieveSourceFile, fileNames}) {
+    console.log("FileNames:", fileNames)
+    const temp = fileNames.filter((x) => x.checked)
     try {
         console.log("TEMP:", temp)
 
