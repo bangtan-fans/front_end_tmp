@@ -63,7 +63,7 @@ function FileApp({ sourceDocs, appendDocs, handleCheckboxChange , handleFileUplo
       <div className="file-app">
         <div className="doclist-section">
           <CentralDocList docs={sourceDocs.filter(x => x.doc_type === "central_doc")} appendDocs={appendDocs} onCheckboxChange={handleCheckboxChange} onButtonPress={handleToggleClick} className="top-doclist" />
-          <SourceDocList docs={sourceDocs.filter(x => x.doc_type === "source_doc")} onCheckboxChange={handleCheckboxChange} onButtonPress={handleToggleClick} className="bottom-doclist" />
+          <SourceDocList docs={sourceDocs.filter(x => x.doc_type === "source_doc")} onCheckboxChange={handleCheckboxChange} onButtonPress={handleToggleClick} handleFileUpload={handleFileUpload} className="bottom-doclist" />
         </div>
         <FileSwitcher dispDoc={dispDoc} selectedDocs={sourceDocs.filter(x => x.checked)} handleFileUpload={handleFileUpload} className="document-box" retrieveFile={retrieveSourceFile} saveFile = {saveCentralFile}/>
       </div>

@@ -9,7 +9,7 @@ import FileUploader from "./FileUploader.jsx"
 import axios from 'axios';
 
 
-function SourceDocList({ docs, onCheckboxChange, onButtonPress }) {
+function SourceDocList({ docs, onCheckboxChange, onButtonPress, handleFileUpload }) {
   const [docNames, setDocNames] = useState([])
   const [showUploader, setShowUploader] = useState(false)  // Toggle open source document upload area  
 
@@ -24,27 +24,11 @@ function SourceDocList({ docs, onCheckboxChange, onButtonPress }) {
       setShowUploader(!showUploader)
   }
 
-  async function handleUploadFile(fileName, fileText) {
-    console.log("trying to send", fileName, fileText)
-    try {
-        const postData = {
-          "filename": fileName,
-          "content": fileText,
-          "doc_type": "source_doc"
-        }
-        console.log("trying to make request now")
-        const response = await axios.post(`${process.env.REACT_APP_URL}/add_document`, postData)
-        console.log(response.data)
-      } catch (error) {
-        console.error('There was an error!', error)
-      }
-  }
-
   return (
     <>
       <div class = "document-sidebar-title" >SOURCE DOCUMENTS</div>
       <div className="file_buttons">
-        <FileUploader onUpload={(text, name) => handleUpload(text, name)} handleFileUpload={handleUploadFile} />
+        <FileUploader onUpload={(text, name) => handleUpload(text, name)} handleFileUpload={handleFileUpload} />
         <div style={{ marginLeft: '10px', display: 'flex', gap: '10px' }}>
             {docNames.map((name, index) => <span key={index}>{name}</span>)}
         </div>
